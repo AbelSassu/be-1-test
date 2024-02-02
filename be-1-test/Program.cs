@@ -5,20 +5,119 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to your Tax Calculator!");
-            Console.WriteLine("Insert your name:");
-            string name = Console.ReadLine();
-            Console.WriteLine("Insert your surname:");
-            string surname = Console.ReadLine();
+            string name;
+            while (true)
+            {
+                Console.WriteLine("Enter your name ");
+                name = Console.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Enter a valid name");
+                }
+            }
+
+            string surname;
+            while (true)
+            {
+                Console.WriteLine("Enter your surname ");
+                surname = Console.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(surname))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Enter a valid surname");
+                }
+            }
+
             Console.Write("Enter your birth date; (GG/MM/AAAA):");
-            DateTime birthDate = DateTime.Parse (Console.ReadLine());
-            Console.WriteLine("Enter your Codice Fiscale:");
-            string codiceFiscale = Console.ReadLine();
-            Console.WriteLine("Select your gender, type M for Male, F for Female, O for Other. ");
-            string gender = Console.ReadLine();
-            Console.WriteLine("Enter your residential municipality:");
-            string residency = Console.ReadLine();
-            Console.WriteLine("Enter your annual income");
-            double income = double.Parse (Console.ReadLine());
+            DateTime birthDate;
+            while (true)
+            {
+                try
+                {
+                    birthDate = DateTime.Parse(Console.ReadLine());
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Enter a valid birth date (GG/MM/AAAA):");
+                }
+            }
+
+            // Console.WriteLine("Enter your Codice Fiscale:");
+            // string codiceFiscale = Console.ReadLine();
+            string codiceFiscale;
+            while (true)
+            {
+                Console.WriteLine("Enter your Codice Fiscale ");
+                codiceFiscale = Console.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(codiceFiscale) && codiceFiscale.Length == 16)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Retry entering your Codice Fiscale (16 characters): ");
+                }
+            }
+
+
+
+            string gender;
+            while (true)
+            {
+                Console.WriteLine("Select your gender, type M for Male, F for Female, O for Other. ");
+                gender = Console.ReadLine();
+
+                if (gender.ToUpper() == "M" || gender.ToUpper() == "F" || gender.ToUpper() == "O")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Insert a valid gender (M/F/O):");
+                }
+            }
+
+            string residency;
+            while (true)
+            {
+                Console.WriteLine("Enter your residency ");
+                residency = Console.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(residency))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Enter a valid residency");
+                }
+            }
+
+            double income;
+            while (true)
+            {
+                Console.WriteLine("Enter your annual income");
+
+                if (double.TryParse(Console.ReadLine(), out income) && income >= 0)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Enter a valid number for income");
+                }
+            }
 
             User user1 = new User(name, surname, birthDate, codiceFiscale, gender, residency, income);
 
@@ -68,52 +167,17 @@
         public DateTime BirthDate
         {
             get { return _birthDate; }
-            set
-            {
-                while (true)
-                {
-                    if (DateTime.TryParseExact(value.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out _birthDate))
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Inserisci una data di nascita valida (GG/MM/AAAA):");
-                    }
-                }
-            }
+            set { _birthDate = value; }
         }
         public string CodiceFiscale
         {
             get { return _codiceFiscale; }
-            set
-            {
-                if (value.Length == 16)
-                {
-                    _codiceFiscale = value.ToUpper();
-                }
-                else
-                {
-                    Console.WriteLine("Insert a valid Codice Fiscale");
-                    Console.Write("Retry entering your Codice Fiscale (16 characters): ");
-                    CodiceFiscale = Console.ReadLine();
-                }
-            }
+            set { _codiceFiscale = value.ToUpper(); }
         }
         public string Gender
         {
             get { return _gender; }
-            set 
-            {
-                
-                if (value.ToUpper() == "M" || value.ToUpper() == "F" || value.ToUpper() == "O") 
-                {
-                    _gender = value.ToUpper();
-                } else {
-                    Console.WriteLine("Insert a valid gender");
-                    return;
-                }
-            }
+            set { _residency = value; }
         }
         public string Residency
         {
