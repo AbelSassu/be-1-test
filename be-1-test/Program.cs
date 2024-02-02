@@ -4,7 +4,13 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to your Tax Calculator!");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(" /$$      /$$           /$$                                                     /$$              \r\n| $$  /$ | $$          | $$                                                    | $$              \r\n| $$ /$$$| $$  /$$$$$$ | $$  /$$$$$$$  /$$$$$$  /$$$$$$/$$$$   /$$$$$$        /$$$$$$    /$$$$$$ \r\n| $$/$$ $$ $$ /$$__  $$| $$ /$$_____/ /$$__  $$| $$_  $$_  $$ /$$__  $$      |_  $$_/   /$$__  $$\r\n| $$$$_  $$$$| $$$$$$$$| $$| $$      | $$  \\ $$| $$ \\ $$ \\ $$| $$$$$$$$        | $$    | $$  \\ $$\r\n| $$$/ \\  $$$| $$_____/| $$| $$      | $$  | $$| $$ | $$ | $$| $$_____/        | $$ /$$| $$  | $$\r\n| $$/   \\  $$|  $$$$$$$| $$|  $$$$$$$|  $$$$$$/| $$ | $$ | $$|  $$$$$$$        |  $$$$/|  $$$$$$/\r\n|__/     \\__/ \\_______/|__/ \\_______/ \\______/ |__/ |__/ |__/ \\_______/         \\___/   \\______/ \r\n                                                                                                ");
+            Console.WriteLine("                                                 /$$                        \r\n                                                | $$                        \r\n /$$   /$$  /$$$$$$  /$$   /$$  /$$$$$$        /$$$$$$    /$$$$$$  /$$   /$$\r\n| $$  | $$ /$$__  $$| $$  | $$ /$$__  $$      |_  $$_/   |____  $$|  $$ /$$/\r\n| $$  | $$| $$  \\ $$| $$  | $$| $$  \\__/        | $$      /$$$$$$$ \\  $$$$/ \r\n| $$  | $$| $$  | $$| $$  | $$| $$              | $$ /$$ /$$__  $$  >$$  $$ \r\n|  $$$$$$$|  $$$$$$/|  $$$$$$/| $$              |  $$$$/|  $$$$$$$ /$$/\\  $$\r\n \\____  $$ \\______/  \\______/ |__/               \\___/   \\_______/|__/  \\__/\r\n /$$  | $$                                                                  \r\n|  $$$$$$/                                                                  \r\n \\______/ ");
+            Console.WriteLine("                     /$$                     /$$             /$$                        \r\n                    | $$                    | $$            | $$                        \r\n  /$$$$$$$  /$$$$$$ | $$  /$$$$$$$ /$$   /$$| $$  /$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$ \r\n /$$_____/ |____  $$| $$ /$$_____/| $$  | $$| $$ |____  $$|_  $$_/   /$$__  $$ /$$__  $$\r\n| $$        /$$$$$$$| $$| $$      | $$  | $$| $$  /$$$$$$$  | $$    | $$  \\ $$| $$  \\__/\r\n| $$       /$$__  $$| $$| $$      | $$  | $$| $$ /$$__  $$  | $$ /$$| $$  | $$| $$      \r\n|  $$$$$$$|  $$$$$$$| $$|  $$$$$$$|  $$$$$$/| $$|  $$$$$$$  |  $$$$/|  $$$$$$/| $$      \r\n \\_______/ \\_______/|__/ \\_______/ \\______/ |__/ \\_______/   \\___/   \\______/ |__/      \r\n                                                                                        ");
+            Console.WriteLine("          /$$             /$$             /$$             /$$             /$$             /$$             /$$   \r\n        /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$         /$$$$$$ \r\n       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$       /$$__  $$\r\n      | $$  \\__/      | $$  \\__/      | $$  \\__/      | $$  \\__/      | $$  \\__/      | $$  \\__/      | $$  \\__/\r\n      |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$       |  $$$$$$ \r\n       \\____  $$       \\____  $$       \\____  $$       \\____  $$       \\____  $$       \\____  $$       \\____  $$\r\n       /$$  \\ $$       /$$  \\ $$       /$$  \\ $$       /$$  \\ $$       /$$  \\ $$       /$$  \\ $$       /$$  \\ $$\r\n      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/      |  $$$$$$/\r\n       \\_  $$_/        \\_  $$_/        \\_  $$_/        \\_  $$_/        \\_  $$_/        \\_  $$_/        \\_  $$_/ \r\n         \\__/            \\__/            \\__/            \\__/            \\__/            \\__/            \\__/   \r\n                                                                                                                ");
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Green;
             string name;
             while (true)
             {
@@ -17,7 +23,9 @@
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Enter a valid name");
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
             }
 
@@ -33,27 +41,47 @@
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Enter a valid surname");
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
             }
 
-            Console.Write("Enter your birth date; (GG/MM/AAAA):");
+            Console.Write("Enter your birth date (DD/MM/YYYY): ");
             DateTime birthDate;
+
             while (true)
             {
                 try
                 {
                     birthDate = DateTime.Parse(Console.ReadLine());
-                    break;
+
+                    if (birthDate.Date < DateTime.Now.Date)
+                    {
+                        break;
+                    }
+                    else if (DateTime.Now.AddYears(-18).Date >= birthDate.Date)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("You must be of legal age to access the tax calculation.");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Enter a valid birth date (are you born in the future!?): ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
                 }
                 catch (FormatException)
-                {
-                    Console.WriteLine("Enter a valid birth date (GG/MM/AAAA):");
+                {   
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Enter a valid birth date (DD/MM/YYYY): ");
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
             }
 
-            // Console.WriteLine("Enter your Codice Fiscale:");
-            // string codiceFiscale = Console.ReadLine();
+
             string codiceFiscale;
             while (true)
             {
@@ -66,11 +94,11 @@
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Retry entering your Codice Fiscale (16 characters): ");
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
             }
-
-
 
             string gender;
             while (true)
@@ -84,7 +112,9 @@
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Insert a valid gender (M/F/O):");
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
             }
 
@@ -100,7 +130,9 @@
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Enter a valid residency");
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
             }
 
@@ -115,13 +147,15 @@
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Enter a valid number for income");
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
             }
 
             User user1 = new User(name, surname, birthDate, codiceFiscale, gender, residency, income);
 
-            if (user1.Income > 0 && user1.Income <= 15000)
+            if (user1.Income >= 0 && user1.Income <= 15000)
             {
                 user1.TaxCalculator(0, 23, 0);
             }
@@ -157,12 +191,12 @@
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set { _name = char.ToUpper(value[0]) + value.Substring(1); }
         }
         public string Surname
         {
             get { return _surname; }
-            set { _surname = value; }
+            set { _surname = char.ToUpper(value[0]) + value.Substring(1); }
         }
         public DateTime BirthDate
         {
@@ -177,25 +211,18 @@
         public string Gender
         {
             get { return _gender; }
-            set { _residency = value; }
+            set { _gender = value.ToUpper(); }
         }
         public string Residency
         {
             get { return _residency; }
-            set { _residency = value; }
+            set { _residency = char.ToUpper(value[0]) + value.Substring(1); ; }
         }
         public double Income
         {
             get { return _income; }
-            set 
-            { if (value > 0)
-                {
-                    _income = value;
-                }
-                else { 
-                    Console.WriteLine("You must have an income to calculate taxes");
-                }
-            }
+            set { _income = value; }
+
         }
         public double TotalTaxes { get; set; }
         public User(string name, string surname, DateTime birthDate, string codiceFiscale, string gender, string residency, double income)
@@ -216,6 +243,7 @@
         }
         public void ShowInfo()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"Welcome: {Name} {Surname}");
             Console.WriteLine($"Birth date: {BirthDate}");
             Console.WriteLine($"Codice Fiscale: {CodiceFiscale}");
@@ -223,6 +251,7 @@
             Console.WriteLine($"Residency: {Residency}");
             Console.WriteLine($"Income: {Income}");
             Console.WriteLine($"Total Taxes: {TotalTaxes}");
+            Console.ForegroundColor = ConsoleColor.Green;
         }
     }   
 }
