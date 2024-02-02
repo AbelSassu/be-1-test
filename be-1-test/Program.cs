@@ -56,11 +56,13 @@
                 {
                     birthDate = DateTime.Parse(Console.ReadLine());
 
-                    if (birthDate.Date < DateTime.Now.Date)
+                    if (birthDate.Date > DateTime.Now.Date)
                     {
-                        break;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Enter a valid birth date (are you born in the future!?): ");
+                        Console.ForegroundColor = ConsoleColor.Green;
                     }
-                    else if (DateTime.Now.AddYears(-18).Date >= birthDate.Date)
+                    else if (DateTime.Now.AddYears(-18).Date < birthDate.Date)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("You must be of legal age to access the tax calculation.");
@@ -68,18 +70,17 @@
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Enter a valid birth date (are you born in the future!?): ");
-                        Console.ForegroundColor = ConsoleColor.Green;
+                        break;
                     }
                 }
                 catch (FormatException)
-                {   
+                {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Enter a valid birth date (DD/MM/YYYY): ");
                     Console.ForegroundColor = ConsoleColor.Green;
                 }
             }
+
 
 
             string codiceFiscale;
